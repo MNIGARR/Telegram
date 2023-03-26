@@ -1,0 +1,97 @@
+﻿<Window x:Class="Telegram.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Telegram"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+
+
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="850" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "1*"></ColumnDefinition>
+            <ColumnDefinition Width="2.2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="1*"/>
+            <RowDefinition Height ="8.5*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row ="0" Grid.Column="1" Name="tbl_Name" FontSize="24" FontFamily="Candara" Text="Name"></TextBlock>
+
+
+
+
+        <Rectangle Grid.Row="1" Grid.Column="1">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="Crimson" Offset="0.4" />
+                    <GradientStop Color="CornflowerBlue" Offset="0.0" />
+                    <GradientStop Color="CornflowerBlue" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Border Grid.Row="1" Grid.Column="1" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBox
+                        x:Name="txt_box" Grid.Row="1" Grid.Column="1"
+                       Width = "477" Height = "48" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="20" Margin="0, 500, 50, 0" AcceptsReturn="True" MouseEnter="text_box_mouseEnter" MouseLeave="text_box_mouseLeave"/>
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Column="0" Grid.Row="1">
+            <ScrollViewer Grid.Row="1" Grid.Column="0"  VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="Stckpnl" VerticalAlignment="Bottom" />
+            </ScrollViewer>
+        </Border>
+
+        <Button x:Name="emoji_button" Grid.Row="1" Grid.Column="1" Height="48" Width="55" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 40, 0, 0">
+            <Image Source="https://icons.veryicon.com/png/o/miscellaneous/color-work-icon/send-18.png" ></Image>
+
+
+        </Button>
+
+        <emoji:Picker Name ="emoji" Grid.Row ="1"  Grid.Column="1"  Height="48" Width="75" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 40, 500, 0" Picked="emoji_Picked" />
+
+
+        <Image Grid.Row ="0" Grid.Column="1" Source="https://icons.veryicon.com/png/o/miscellaneous/common-operation-type-icon/viewing-magnifying-glass_-operation_-jurassic.png" HorizontalAlignment="Right" Width="50" Height="50" Margin="0, 0, 50, 0"></Image>
+        <Image Grid.Row ="0" Grid.Column="1" Source="https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/216-more-vertical.png" Width="50" Height="50" HorizontalAlignment="Right"></Image>
+        <Label Content="Contacts" VerticalAlignment="Center" FontWeight="Medium" FontSize="22" FontStyle ="Italic"  Foreground="CadetBlue"  Margin ="8, 0, 0, 0"/>
+
+
+        <ListView Name ="ListView" ItemsSource="{Binding contact}" Background="Transparent" BorderThickness="0" Grid.Row="1" MouseDoubleClick="ListView_DoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+
+                        <GridViewColumn Header="Name" Width="140" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding name}" FontFamily="Candara" FontSize="17"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Time" Width="130">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding date}" FontFamily="Candara" FontSize="13"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+
+
+    
+    
+</Window>
